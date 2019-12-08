@@ -9,4 +9,11 @@ function draw() {
   const ctx = canvas.getContext('2d');
   ctx.lineWidth = 2;
   ctx.strokeStyle = 'blue';
+
+  const onPaint = function() {
+    ctx.beginPath();
+    ctx.moveTo(last_mouse.x, last_mouse.y);
+    ctx.lineTo(mouse.x, mouse.y);
+    ctx.stroke();
+  };
 }
