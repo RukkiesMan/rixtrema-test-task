@@ -15,12 +15,16 @@ function main() {
     google.maps.event.clearListeners(map, 'mousemove');
     canvas.clearCanvas();
   });
+
+  map.addListener('idle', function() {
+    console.log('ok');
+  });
 }
 
 function initMap() {
   const options = {
     center: { lat: 43.642, lng: -79.389 },
-    zoom: 16,
+    zoom: 10,
     draggable: false,
   };
 
