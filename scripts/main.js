@@ -10,9 +10,28 @@ function draw() {
   ctx.lineWidth = 2;
   ctx.strokeStyle = 'blue';
 
+  const mouse = { x: 0, y: 0 };
+  const lastMouse = { x: 0, y: 0 };
+
+  canvas.addEventListener('mousemove', function(event) {
+    lastMouse.x = mouse.x;
+    lastMouse.y = mouse.y;
+
+    mouse.x = event.pageX - this.offsetLeft;
+    mouse.y = event.pageY - this.offsetTop;
+  });
+
+  canvas.addEventListener('mousedown', function() {
+    canvas.addEventListener('mousemove', onPaint, false);
+  });
+
+  canvas.addEventListener('mouseup', function() {
+    canvas.removeEventListener('mousemove', onPaint, false);
+  });
+
   const onPaint = function() {
     ctx.beginPath();
-    ctx.moveTo(last_mouse.x, last_mouse.y);
+    ctx.moveTo(lastMouse.x, lastMouse.y);
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
   };
