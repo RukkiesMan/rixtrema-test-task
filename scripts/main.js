@@ -13,12 +13,16 @@ function draw() {
   const mouse = { x: 0, y: 0 };
   const lastMouse = { x: 0, y: 0 };
 
+  const coordinates = [];
+
   canvas.addEventListener('mousemove', function(event) {
     lastMouse.x = mouse.x;
     lastMouse.y = mouse.y;
 
     mouse.x = event.pageX - this.offsetLeft;
     mouse.y = event.pageY - this.offsetTop;
+
+    coordinates.push({ x: mouse.x, y: mouse.y });
   });
 
   canvas.addEventListener('mousedown', function() {
@@ -26,6 +30,7 @@ function draw() {
   });
 
   canvas.addEventListener('mouseup', function() {
+    console.log(coordinates);
     canvas.removeEventListener('mousemove', onPaint, false);
   });
 
