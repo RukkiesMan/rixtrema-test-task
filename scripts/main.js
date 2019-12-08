@@ -1,3 +1,12 @@
+function initMap() {
+  const options = {
+    center: { lat: 43.642, lng: -79.389 },
+    zoom: 16,
+  };
+
+  map = new google.maps.Map(document.getElementById('map'), options);
+}
+
 function draw() {
   const canvas = document.querySelector('#paint');
   const canvasContainer = document.body;

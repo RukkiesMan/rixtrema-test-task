@@ -8,8 +8,14 @@
     <title>Google Map Area</title>
   </head>
   <body onload="draw();">
+    <div id="map"></div>
     <canvas id="paint"></canvas>
 
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFVWHucck0wZCloQojpKjbOoClFk3VSJY&callback=initMap"
+    ></script>
     <script src="./scripts/main.js"></script>
   </body>
 </html>
