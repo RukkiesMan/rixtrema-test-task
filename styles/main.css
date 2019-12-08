@@ -5,6 +5,17 @@ body {
   padding: 0;
 }
 
+.container {
+  position: relative;
+  height: 100%;
+}
+
+#paint {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 #map {
   height: 100%;
 }
