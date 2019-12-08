@@ -3,6 +3,18 @@ function main() {
   const map = initMap();
   const container = document.getElementById('container');
   const canvas = new Canvas(container);
+
+  map.addListener('mousedown', function() {
+    map.addListener('mousemove', function({ pixel, latLng }) {
+      canvas.onPaint(pixel);
+      coordinates.push(latLng);
+    });
+  });
+
+  map.addListener('mouseup', function() {
+    google.maps.event.clearListeners(map, 'mousemove');
+    canvas.clearCanvas();
+  });
 }
 
 function initMap() {
