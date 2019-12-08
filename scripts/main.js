@@ -1,13 +1,11 @@
-function initMap() {
-  const options = {
-    center: { lat: 43.642, lng: -79.389 },
-    zoom: 16,
-  };
+function main() {
+  const coordinates = [];
 
-  map = new google.maps.Map(document.getElementById('map'), options);
+  const map = initMap();
+  draw(coordinates);
 }
 
-function draw() {
+function draw(coordinates) {
   const canvas = document.querySelector('#paint');
   const canvasContainer = document.body;
 
@@ -21,8 +19,6 @@ function draw() {
 
   const mouse = { x: 0, y: 0 };
   const lastMouse = { x: 0, y: 0 };
-
-  const coordinates = [];
 
   canvas.addEventListener('mousemove', function(event) {
     lastMouse.x = mouse.x;
@@ -39,7 +35,6 @@ function draw() {
   });
 
   canvas.addEventListener('mouseup', function() {
-    console.log(coordinates);
     canvas.removeEventListener('mousemove', onPaint, false);
   });
 
@@ -49,4 +44,13 @@ function draw() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
   };
+}
+
+function initMap() {
+  const options = {
+    center: { lat: 43.642, lng: -79.389 },
+    zoom: 16,
+  };
+
+  return new google.maps.Map(document.getElementById('map'), options);
 }
