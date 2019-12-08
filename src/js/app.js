@@ -1,3 +1,5 @@
+require('../css/style.css');
+
 function main() {
   const coordinates = [];
   const map = initMap();
@@ -14,10 +16,6 @@ function main() {
   map.addListener('mouseup', function() {
     google.maps.event.clearListeners(map, 'mousemove');
     canvas.clearCanvas();
-  });
-
-  map.addListener('idle', function() {
-    console.log('ok');
   });
 }
 
@@ -74,3 +72,5 @@ class Canvas {
     return this.canvas;
   }
 }
+
+window.onload = main;
