@@ -10,6 +10,19 @@ class Map {
   removeListener(event) {
     google.maps.event.clearListeners(this.map, event);
   }
+
+  createPolygon(coordinates, options) {
+    return new google.maps.Polygon({
+      map: this.map,
+      paths: coordinates,
+      strokeColor: 'blue',
+      fillColor: 'blue',
+      fillOpacity: 0.4,
+      draggable: true,
+      editable: true,
+      ...options,
+    });
+  }
 }
 
 export default Map;
