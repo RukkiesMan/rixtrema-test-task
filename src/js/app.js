@@ -1,5 +1,5 @@
-import Map from './map';
-import Canvas from './canvas.js';
+import Map from './components/map';
+import Canvas from './components/canvas';
 import '../css/style.css';
 
 const main = () => {
