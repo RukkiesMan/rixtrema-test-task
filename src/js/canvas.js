@@ -42,4 +42,4 @@ class Canvas {
   }
 }
 
-module.exports = Canvas;
+export default Canvas;
