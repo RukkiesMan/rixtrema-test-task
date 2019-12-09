@@ -1,11 +1,20 @@
+import Map from './map';
 import Canvas from './canvas.js';
 import '../css/style.css';
 
 const main = () => {
   const coordinates = [];
-  const map = initMap();
-  const container = document.getElementById('container');
-  const canvas = new Canvas(container);
+  const options = {
+    center: { lat: 43.642, lng: -79.389 },
+    zoom: 10,
+    draggable: false,
+  };
+
+  const mapContainer = document.getElementById('map');
+  const map = new Map(mapContainer, options);
+
+  const canvasContainer = document.getElementById('container');
+  const canvas = new Canvas(canvasContainer);
 
   map.addListener('mousedown', () => {
     map.addListener('mousemove', ({ pixel, latLng }) => {
@@ -15,19 +24,9 @@ const main = () => {
   });
 
   map.addListener('mouseup', () => {
-    google.maps.event.clearListeners(map, 'mousemove');
+    map.removeListener('mousemove');
     canvas.clearCanvas();
   });
-};
-
-const initMap = () => {
-  const options = {
-    center: { lat: 43.642, lng: -79.389 },
-    zoom: 10,
-    draggable: false,
-  };
-
-  return new google.maps.Map(document.getElementById('map'), options);
 };
 
 window.onload = main;
