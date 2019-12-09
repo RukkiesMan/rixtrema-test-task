@@ -6,7 +6,9 @@ import Canvas from './components/canvas';
 import '../css/style.css';
 
 const main = () => {
-  const coordinates = [];
+  let coordinates = [];
+  let currentPolygon = null;
+
   const options = {
     center: { lat: 43.642, lng: -79.389 },
     zoom: 10,
@@ -20,13 +22,23 @@ const main = () => {
   const canvas = new Canvas(canvasContainer);
 
   map.addListener('mousedown', () => {
+    coordinates = [];
+    if (currentPolygon) {
+      currentPolygon.setMap(null);
+    }
+
     map.addListener('mousemove', ({ pixel, latLng }) => {
       canvas.onPaint(pixel);
-      coordinates.push(latLng);
+      coordinates.push({ x: pixel.x, y: pixel.y, latLng });
     });
   });
 
   map.addListener('mouseup', () => {
+    const convertedCoordinates = convertCoordinatesForMap(coordinates);
+
+    currentPolygon = map.createPolygon(convertedCoordinates);
+    console.log(convertedCoordinates);
+
     map.removeListener('mousemove');
     canvas.clearCanvas();
   });
