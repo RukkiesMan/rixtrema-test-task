@@ -1,5 +1,8 @@
+import simplify from 'simplify-js';
+
 import Map from './components/map';
 import Canvas from './components/canvas';
+
 import '../css/style.css';
 
 const main = () => {
@@ -27,6 +30,15 @@ const main = () => {
     map.removeListener('mousemove');
     canvas.clearCanvas();
   });
+};
+
+const convertCoordinatesForMap = coordinates => {
+  const tolerance = 5;
+
+  return simplify(coordinates, tolerance).map(coordinate => ({
+    lat: coordinate.latLng.lat(),
+    lng: coordinate.latLng.lng(),
+  }));
 };
 
 window.onload = main;
