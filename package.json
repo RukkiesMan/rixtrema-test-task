@@ -11,6 +11,9 @@
   "author": "RukkiesMan",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
     "style-loader": "^1.0.1"
   }
