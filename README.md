@@ -2,6 +2,9 @@
 
 The project is a test task by Rixtream company
 
+## Condition
+Create polygon on the map using Google Maps API.
+
 ## Commands
 
 ### Install
